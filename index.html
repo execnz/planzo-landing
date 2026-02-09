@@ -1,0 +1,1818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planzo - The First Budgeting App Built For Couples</title>
+    <meta name="description" content="Stop fighting about finances. Start building together. Join 1,247+ couples waiting for the first budgeting app designed for how couples actually handle money.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Cabinet+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Analytics Placeholder -->
+    <!-- PostHog / Plausible Analytics code goes here -->
+    <script>
+        // Analytics initialization placeholder
+        // window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }
+    </script>
+    
+    <style>
+        :root {
+            /* Color Palette */
+            --primary-blue: #2C5F8D;
+            --primary-blue-dark: #1a3a52;
+            --coral: #FF7F66;
+            --coral-dark: #e65a42;
+            --mint: #52D1A0;
+            --mint-dark: #3ab885;
+            --neutral-bg: #F5F7FA;
+            --text-dark: #1A2332;
+            --text-gray: #5a6a7a;
+            --white: #ffffff;
+            
+            /* Typography */
+            --font-display: 'Cabinet Grotesk', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+            
+            /* Spacing */
+            --section-padding: 120px;
+            --section-padding-mobile: 60px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        .wide-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(44, 95, 141, 0.1);
+            z-index: 1000;
+            padding: 20px 0;
+        }
+        
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 20px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .nav-cta {
+            background: var(--coral);
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .nav-cta:hover {
+            background: var(--coral-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 127, 102, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding-top: 140px;
+            padding-bottom: var(--section-padding);
+            background: linear-gradient(135deg, #f8fafc 0%, #e8f0f7 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(82, 209, 160, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 60%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(44, 95, 141, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 1px solid rgba(44, 95, 141, 0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 24px;
+            animation: fadeInDown 0.6s ease-out;
+        }
+        
+        .hero-badge::before {
+            content: '●';
+            color: var(--mint);
+            animation: pulse 2s infinite;
+        }
+        
+        h1 {
+            font-family: var(--font-display);
+            font-size: 72px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+        
+        h1 .highlight {
+            color: var(--primary-blue);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-subtitle {
+            font-size: 22px;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+        
+        .value-stack {
+            background: white;
+            border: 1px solid rgba(44, 95, 141, 0.1);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 48px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+        
+        .value-stack ul {
+            list-style: none;
+            display: grid;
+            gap: 16px;
+        }
+        
+        .value-stack li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 16px;
+            color: var(--text-dark);
+        }
+        
+        .value-stack li::before {
+            content: '✓';
+            color: var(--mint);
+            font-weight: 700;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        /* Email Form */
+        .email-form-wrapper {
+            max-width: 600px;
+            animation: fadeInUp 0.8s ease-out 0.8s backwards;
+        }
+        
+        .email-form {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .email-input {
+            flex: 1;
+            padding: 18px 24px;
+            border: 2px solid rgba(44, 95, 141, 0.2);
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: var(--font-body);
+            transition: all 0.3s;
+        }
+        
+        .email-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 4px rgba(44, 95, 141, 0.1);
+        }
+        
+        .cta-button {
+            padding: 18px 36px;
+            background: var(--coral);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: var(--font-body);
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        
+        .cta-button:hover {
+            background: var(--coral-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 127, 102, 0.3);
+        }
+        
+        .cta-button:active {
+            transform: translateY(0);
+        }
+        
+        .form-benefits {
+            font-size: 14px;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+        
+        .form-benefits div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        
+        .form-benefits div::before {
+            content: '→';
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+        
+        .waitlist-count {
+            margin-top: 32px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            color: var(--text-gray);
+        }
+        
+        .waitlist-avatars {
+            display: flex;
+            margin-left: -8px;
+        }
+        
+        .waitlist-avatars span {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin-left: -8px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--mint));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        
+        .waitlist-number {
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+        
+        /* Section Headers */
+        .section {
+            padding: var(--section-padding) 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-label {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary-blue);
+            margin-bottom: 16px;
+        }
+        
+        h2 {
+            font-family: var(--font-display);
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+        
+        .section-subtitle {
+            font-size: 20px;
+            color: var(--text-gray);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* Problem Section */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+        
+        .problem-card {
+            background: white;
+            border: 2px solid rgba(44, 95, 141, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+        
+        .problem-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary-blue);
+        }
+        
+        .problem-emoji {
+            font-size: 48px;
+            margin-bottom: 24px;
+            display: block;
+        }
+        
+        .problem-card h3 {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+        
+        .problem-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        
+        .problem-card .tagline {
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-style: italic;
+        }
+        
+        /* Feature Section */
+        .feature {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 120px;
+        }
+        
+        .feature:nth-child(even) .feature-visual {
+            order: -1;
+        }
+        
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--mint));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 32px;
+        }
+        
+        .feature h3 {
+            font-family: var(--font-display);
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .feature h4 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-gray);
+            margin-bottom: 24px;
+        }
+        
+        .feature p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+        
+        .feature ul {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+        
+        .feature li {
+            padding-left: 28px;
+            position: relative;
+            margin-bottom: 12px;
+            color: var(--text-gray);
+        }
+        
+        .feature li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--mint);
+            font-size: 24px;
+            line-height: 1;
+        }
+        
+        .feature-visual {
+            background: var(--neutral-bg);
+            border-radius: 20px;
+            padding: 40px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(44, 95, 141, 0.1);
+        }
+        
+        .mockup-placeholder {
+            text-align: center;
+            color: var(--text-gray);
+            font-style: italic;
+        }
+        
+        /* Founder Story */
+        .founder-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1a3a52 100%);
+            color: white;
+        }
+        
+        .founder-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        
+        .founder-photo {
+            position: sticky;
+            top: 120px;
+        }
+        
+        .founder-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .founder-name {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .founder-title {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+        }
+        
+        .founder-story h2 {
+            color: white;
+        }
+        
+        .founder-story p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .founder-story strong {
+            color: var(--mint);
+            font-weight: 600;
+        }
+        
+        .founder-story ul {
+            list-style: none;
+            margin: 32px 0;
+        }
+        
+        .founder-story li {
+            padding-left: 28px;
+            position: relative;
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .founder-story li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--mint);
+            font-size: 24px;
+        }
+        
+        .cta-secondary {
+            display: inline-block;
+            margin-top: 24px;
+            color: var(--mint);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid var(--mint);
+            transition: all 0.3s;
+        }
+        
+        .cta-secondary:hover {
+            border-bottom-color: transparent;
+            transform: translateX(4px);
+        }
+        
+        /* Timeline */
+        .timeline-section {
+            background: var(--neutral-bg);
+        }
+        
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            padding-bottom: 60px;
+        }
+        
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 19px;
+            top: 40px;
+            bottom: 0;
+            width: 2px;
+            background: rgba(44, 95, 141, 0.2);
+        }
+        
+        .timeline-item:last-child::before {
+            display: none;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--mint);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+        
+        .timeline-dot.active {
+            background: var(--primary-blue);
+            box-shadow: 0 0 0 8px rgba(44, 95, 141, 0.1);
+        }
+        
+        .timeline-date {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 8px;
+        }
+        
+        .timeline h3 {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .timeline p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+        
+        .progress-bar {
+            margin-top: 60px;
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            border: 2px solid rgba(44, 95, 141, 0.1);
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        
+        .progress-track {
+            height: 12px;
+            background: rgba(44, 95, 141, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--mint));
+            width: 35%;
+            border-radius: 6px;
+            transition: width 1s ease-out;
+        }
+        
+        /* Pricing */
+        .pricing-card {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border: 3px solid var(--primary-blue);
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 12px 48px rgba(44, 95, 141, 0.12);
+            position: relative;
+        }
+        
+        .pricing-badge {
+            position: absolute;
+            top: -16px;
+            right: 24px;
+            background: var(--coral);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .pricing-title {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .pricing-subtitle {
+            color: var(--text-gray);
+            margin-bottom: 32px;
+        }
+        
+        .price {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+        
+        .price-amount {
+            font-family: var(--font-display);
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--primary-blue);
+        }
+        
+        .price-period {
+            font-size: 20px;
+            color: var(--text-gray);
+        }
+        
+        .price-compare {
+            text-decoration: line-through;
+            color: var(--text-gray);
+            font-size: 20px;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+        
+        .pricing-features li {
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(44, 95, 141, 0.1);
+        }
+        
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--mint);
+            font-weight: 700;
+            font-size: 20px;
+        }
+        
+        .pricing-cta {
+            width: 100%;
+            padding: 20px;
+            font-size: 18px;
+        }
+        
+        .pricing-note {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-gray);
+            margin-top: 16px;
+        }
+        
+        /* FAQ */
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            border: 2px solid rgba(44, 95, 141, 0.1);
+            border-radius: 16px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 24px 28px;
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .faq-question:hover {
+            color: var(--primary-blue);
+        }
+        
+        .faq-toggle {
+            font-size: 24px;
+            color: var(--primary-blue);
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+        
+        .faq-answer-content {
+            padding: 0 28px 24px;
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+        
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1a3a52 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            color: white;
+        }
+        
+        .final-cta .section-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .final-cta .email-form-wrapper {
+            margin: 0 auto;
+        }
+        
+        .final-cta .email-input {
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        .final-cta .form-benefits {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .final-cta .form-benefits div::before {
+            color: var(--mint);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-brand {
+            color: white;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        
+        .footer-section h4 {
+            color: white;
+            font-family: var(--font-display);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        /* Success Message */
+        .success-message {
+            position: fixed;
+            top: 100px;
+            right: 24px;
+            background: var(--mint);
+            color: white;
+            padding: 20px 24px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(82, 209, 160, 0.3);
+            z-index: 1001;
+            display: none;
+            animation: slideInRight 0.4s ease-out;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 56px;
+            }
+            
+            h2 {
+                font-size: 42px;
+            }
+            
+            .feature {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .feature:nth-child(even) .feature-visual {
+                order: 0;
+            }
+            
+            .founder-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .founder-photo {
+                position: static;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 20px;
+            }
+            
+            nav ul li:not(:last-child) {
+                display: none;
+            }
+            
+            h1 {
+                font-size: 42px;
+            }
+            
+            h2 {
+                font-size: 36px;
+            }
+            
+            .hero {
+                padding-top: 120px;
+                padding-bottom: var(--section-padding-mobile);
+            }
+            
+            .section {
+                padding: var(--section-padding-mobile) 0;
+            }
+            
+            .email-form {
+                flex-direction: column;
+            }
+            
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">
+                <div class="logo-icon">P</div>
+                PLANZO
+            </a>
+            <ul>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#story">Story</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#waitlist" class="nav-cta">Join Waitlist</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="success-message">
+        <strong>🎉 You're on the list!</strong><br>
+        Check your email for next steps.
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                Coming March 2026 • Join the Waitlist
+            </div>
+            
+            <h1>
+                The First Budgeting App Built<br>
+                For How <span class="highlight">Couples</span> Actually<br>
+                Handle Money
+            </h1>
+            
+            <p class="hero-subtitle">
+                Stop fighting about finances. Start building together. Planzo makes money management work for both of you—whether you share everything or keep some things separate.
+            </p>
+            
+            <div class="value-stack">
+                <ul>
+                    <li><strong>Partnership Mode™</strong> - Different engagement levels for each partner</li>
+                    <li><strong>One-Tap Split</strong> - End the "who paid for what" confusion</li>
+                    <li><strong>Weekly Money Date™</strong> - 7-minute check-ins that actually work</li>
+                    <li><strong>Threshold Agreement™</strong> - Set spending limits without the awkwardness</li>
+                    <li><strong>Couple Sync™</strong> - Real-time updates, zero lag</li>
+                </ul>
+            </div>
+            
+            <div class="email-form-wrapper">
+                <form class="email-form" id="heroForm">
+                    <input 
+                        type="email" 
+                        class="email-input" 
+                        placeholder="Enter your email address" 
+                        required
+                        name="email"
+                    >
+                    <button type="submit" class="cta-button">Join the Waitlist</button>
+                </form>
+                
+                <div class="form-benefits">
+                    <div>Get early access when we launch</div>
+                    <div>Exclusive launch pricing (save 40%)</div>
+                    <div>Free extended trial (60 days vs 30 days)</div>
+                    <div>Direct line to the founders</div>
+                </div>
+                
+                <div class="waitlist-count">
+                    <div class="waitlist-avatars">
+                        <span>👥</span>
+                        <span>💑</span>
+                        <span>+</span>
+                    </div>
+                    <span><span class="waitlist-number" id="waitlistCount">1,247</span> couples already on the waitlist</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="section" id="problem">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">The Challenge</div>
+                <h2>Every Budgeting App Fails Couples.<br>Here's Why.</h2>
+            </div>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <span class="problem-emoji">😤</span>
+                    <h3>"The Budget Person vs Everyone Else"</h3>
+                    <p>
+                        One of you wants to track every penny. The other just wants to live. Every app assumes you're both equally obsessed with budgeting. You're not. One person does all the work. The other feels nagged.
+                    </p>
+                    <p class="tagline">Sound familiar?</p>
+                </div>
+                
+                <div class="problem-card">
+                    <span class="problem-emoji">😬</span>
+                    <h3>"The Silent Judgment Machine"</h3>
+                    <p>
+                        You buy a $6 coffee. Your partner sees it. Now you feel like you need to explain yourself. Every purchase becomes visible. What was supposed to be transparency turned into anxiety and defensiveness.
+                    </p>
+                    <p class="tagline">Budgeting apps don't build trust. They build resentment.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <span class="problem-emoji">🤷</span>
+                    <h3>"The All-or-Nothing Trap"</h3>
+                    <p>
+                        You want to share rent and groceries but keep date nights personal. Every app makes you choose: share EVERYTHING or share NOTHING. There's no middle ground.
+                    </p>
+                    <p class="tagline">But that's not how real couples handle money.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center;">
+                <button class="cta-button" onclick="document.getElementById('waitlist').scrollIntoView({behavior: 'smooth'})">
+                    We Built Something Different →
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="section" id="features" style="background: var(--neutral-bg);">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">The Planzo Solution</div>
+                <h2>How Planzo Is Different</h2>
+                <p class="section-subtitle">
+                    We spent 4 months researching how real couples manage money. We talked to hundreds of people. And we built something that actually works for how you live.
+                </p>
+            </div>
+            
+            <!-- Feature 1 -->
+            <div class="feature">
+                <div class="feature-content">
+                    <div class="feature-icon">👥</div>
+                    <h3>Partnership Mode™</h3>
+                    <h4>Different Modes for Different Styles</h4>
+                    <p>
+                        One of you loves spreadsheets and wants to see every detail. The other just wants the bottom line once a week.
+                    </p>
+                    <p>
+                        Planzo gives you both what you need:
+                    </p>
+                    <ul>
+                        <li>Manager Mode - Full access, all the data</li>
+                        <li>Participant Mode - Simplified tracking</li>
+                        <li>Awareness Mode - Monthly summaries only</li>
+                    </ul>
+                    <p>
+                        Each partner chooses independently. Same data, different views.
+                    </p>
+                </div>
+                <div class="feature-visual">
+                    <img src="mockup-partnership-mode.svg" alt="Partnership Mode Interface" style="width: 100%; height: auto;">
+                </div>
+            </div>
+            
+            <!-- Feature 2 -->
+            <div class="feature">
+                <div class="feature-content">
+                    <div class="feature-icon">🧾</div>
+                    <h3>One-Tap Split</h3>
+                    <h4>End the "Who Paid for What" Confusion</h4>
+                    <p>
+                        You paid for groceries. Tap once to split it 50/50. That's it.
+                    </p>
+                    <ul>
+                        <li>No math</li>
+                        <li>No awkward conversations</li>
+                        <li>No mental scorekeeping</li>
+                        <li>Running balance automatically tracked</li>
+                        <li>"Settle Up" whenever you're ready</li>
+                    </ul>
+                </div>
+                <div class="feature-visual">
+                    <img src="mockup-one-tap-split.svg" alt="One-Tap Split Interface" style="width: 100%; height: auto;">
+                </div>
+            </div>
+            
+            <!-- Feature 3 -->
+            <div class="feature">
+                <div class="feature-content">
+                    <div class="feature-icon">📅</div>
+                    <h3>Weekly Money Date™</h3>
+                    <h4>7-Minute Check-Ins That Actually Work</h4>
+                    <p>
+                        Every Sunday at 10am (or whenever you choose), both partners get a gentle reminder: "Time for your weekly check-in."
+                    </p>
+                    <p>
+                        Open the app together. Review:
+                    </p>
+                    <ul>
+                        <li>This week's spending</li>
+                        <li>Pending settlements</li>
+                        <li>Upcoming bills</li>
+                        <li>Budget status</li>
+                    </ul>
+                    <p>
+                        Average time: 7 minutes. No stress. No surprises.
+                    </p>
+                </div>
+                <div class="feature-visual">
+                    <img src="mockup-weekly-money-date.svg" alt="Weekly Money Date Dashboard" style="width: 100%; height: auto;">
+                </div>
+            </div>
+            
+            <!-- Feature 4 -->
+            <div class="feature">
+                <div class="feature-content">
+                    <div class="feature-icon">💵</div>
+                    <h3>Threshold Agreement™</h3>
+                    <h4>Set It Once, Never Argue Again</h4>
+                    <p>
+                        Sit down together. Agree on a number. Let's say $100.
+                    </p>
+                    <ul>
+                        <li>Purchases under $100? Buy it. No discussion needed.</li>
+                        <li>Purchases over $100? Talk first.</li>
+                    </ul>
+                    <p>
+                        The app reminds you when you're about to cross the threshold. No judgment. No surprises. Just clarity.
+                    </p>
+                </div>
+                <div class="feature-visual">
+                    <img src="mockup-threshold-agreement.svg" alt="Threshold Agreement Interface" style="width: 100%; height: auto;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Story -->
+    <section class="section founder-section" id="story">
+        <div class="container">
+            <div class="founder-content">
+                <div class="founder-photo">
+                    <div class="founder-image">[Founder Photo]</div>
+                    <div class="founder-name">Alex & Sam</div>
+                    <div class="founder-title">Founders, Planzo</div>
+                </div>
+                
+                <div class="founder-story">
+                    <div class="section-label" style="color: var(--mint);">Our Story</div>
+                    <h2>Why We're Building This</h2>
+                    
+                    <p>We downloaded seven budgeting apps together.</p>
+                    <p>We quit all seven.</p>
+                    
+                    <p>
+                        They were built for individuals. We're a couple. One of us is a budget nerd who wants to track every dollar. The other just wants to know if we can afford that weekend trip.
+                    </p>
+                    
+                    <p>
+                        Every app forced us into the same mold: either we both obsess over budgeting, or neither of us does.
+                    </p>
+                    
+                    <p>
+                        So we started researching. We interviewed hundreds of couples. We launched a podcast about money and relationships. And we discovered something important:
+                    </p>
+                    
+                    <p>
+                        <strong>The apps weren't failing because couples are bad at budgeting. The apps were failing because they were never designed for couples in the first place.</strong>
+                    </p>
+                    
+                    <p>So we're building Planzo. Not for everyone. For couples who:</p>
+                    
+                    <ul>
+                        <li>Want to manage money together without losing independence</li>
+                        <li>Have different approaches to budgeting (nerd + free spirit)</li>
+                        <li>Are tired of fighting about $6 coffees</li>
+                        <li>Want a system that works for how they actually live</li>
+                    </ul>
+                    
+                    <p>
+                        We're building this in public. Sharing our progress. Learning from couples like you. And creating something that doesn't exist yet: a budgeting app that actually gets how relationships work.
+                    </p>
+                    
+                    <p><strong>Join us.</strong></p>
+                    
+                    <button class="cta-button" onclick="document.getElementById('waitlist').scrollIntoView({behavior: 'smooth'})">
+                        Join the Waitlist - Get Early Access
+                    </button>
+                    
+                    <a href="#" class="cta-secondary">Follow our building journey on YouTube →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="section timeline-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Transparency</div>
+                <h2>Building the Future of Shared Finance</h2>
+                <p class="section-subtitle">Our transparent development roadmap for 2026</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot">✓</div>
+                    <div class="timeline-date">January 2026</div>
+                    <h3>Core Budgeting Engine</h3>
+                    <p>Foundational transaction tracking and category management complete.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot active">⚙️</div>
+                    <div class="timeline-date">February 2026</div>
+                    <h3>Joint Account Sync</h3>
+                    <p>Real-time bank integration for both partners. Currently in development.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot">○</div>
+                    <div class="timeline-date">March 2026</div>
+                    <h3>AI Insight Engine</h3>
+                    <p>Smart suggestions to save for joint goals and reduce spending friction.</p>
+                </div>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-label">
+                    <span>Development Progress</span>
+                    <span><strong>35%</strong> Complete</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Early Access Special</div>
+                <h2>Use Immediately, Pay Later</h2>
+                <p class="section-subtitle">
+                    We want you to focus on your partnership, not the bill. Try Planzo risk-free with our early access program.
+                </p>
+            </div>
+            
+            <div class="pricing-card">
+                <div class="pricing-badge">40% OFF</div>
+                <h3 class="pricing-title">The Partner Plan</h3>
+                <p class="pricing-subtitle">One subscription for two people.</p>
+                
+                <div class="price">
+                    <span class="price-amount">$8.99</span>
+                    <span class="price-period">/month</span>
+                    <span class="price-compare">$14.99</span>
+                </div>
+                
+                <ul class="pricing-features">
+                    <li>60-Day Full Access Free Trial</li>
+                    <li>Two Accounts, One Shared View</li>
+                    <li>Unlimited Joint Budget Goals</li>
+                    <li>Locked-In Price for Life</li>
+                </ul>
+                
+                <button class="cta-button pricing-cta" onclick="document.getElementById('waitlist').scrollIntoView({behavior: 'smooth'})">
+                    Join Waitlist - Lock In This Price
+                </button>
+                
+                <p class="pricing-note">No credit card required to join</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" style="background: var(--neutral-bg);">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Questions</div>
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        When will Planzo be available?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We're launching in March 2026. Waitlist members will get early access via email when we're ready. You'll be among the first to create your account and start using Planzo.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        How does the "use immediately, pay later" work?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            When we launch, you'll create your account with no credit card required. You get 60 days of full access completely free. On day 55, we'll send a reminder email. On day 60, your first payment of $8.99 will be processed. You can cancel anytime before then with zero charges.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Why is early access pricing so much cheaper?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We're rewarding couples who believe in Planzo before it's even built. Your feedback during the early months will help us make Planzo better for everyone. This $8.99/month price is locked in for life – even when we raise prices to $14.99/month later.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        What makes Planzo different from other budgeting apps?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Every other budgeting app was built for individuals, then adapted for couples. Planzo is the first app built from the ground up for couples. We support different engagement levels (one partner can be hands-on, the other hands-off), easy expense splitting, and regular check-ins that take 7 minutes instead of creating conflict.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Do both partners need to be equally involved?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            No! That's the whole point of Partnership Mode™. One partner can use Manager Mode (full access to all data), while the other uses Participant Mode (simplified tracking) or Awareness Mode (monthly summaries only). Each partner chooses their own level of involvement.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Is my financial data secure?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Absolutely. We use bank-level 256-bit encryption, and we never store your banking credentials. We partner with Plaid for secure bank connections, and all data is encrypted both in transit and at rest.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Can I cancel anytime?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes. Cancel anytime with one click. No long-term contracts, no cancellation fees. Your data will remain accessible for 30 days after cancellation in case you change your mind.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        What happens after I join the waitlist?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            You'll receive a welcome email with your waitlist position and early access pricing details. We'll send bi-weekly updates on our building progress, and you'll get access to our Discord community where you can connect with other couples and give us feedback on features.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section final-cta" id="waitlist">
+        <div class="container">
+            <h2>Build Your Future Together,<br>Starting Today.</h2>
+            <p class="section-subtitle">
+                Join 2,500+ couples waiting for the next generation of joint financial planning.
+            </p>
+            
+            <div class="email-form-wrapper">
+                <form class="email-form" id="finalForm">
+                    <input 
+                        type="email" 
+                        class="email-input" 
+                        placeholder="Enter your email address" 
+                        required
+                        name="email"
+                    >
+                    <button type="submit" class="cta-button">Join the Waitlist</button>
+                </form>
+                
+                <div class="form-benefits">
+                    <div>Lock in $8.99/month pricing (40% off)</div>
+                    <div>60 days free trial when we launch</div>
+                    <div>Be among the first to get access</div>
+                    <div>Help shape the future of Planzo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                        <div class="logo-icon" style="width: 32px; height: 32px; font-size: 16px;">P</div>
+                        <span style="font-family: var(--font-display); font-size: 20px; font-weight: 800; color: white;">PLANZO</span>
+                    </div>
+                    <p>The first budgeting app built for how couples actually handle money. Coming March 2026.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#">Roadmap</a></li>
+                        <li><a href="#">Beta Program</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#story">Our Story</a></li>
+                        <li><a href="#">Manifesto</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Couple's Guide</a></li>
+                        <li><a href="#">Finance Blog</a></li>
+                        <li><a href="#">Podcast</a></li>
+                        <li><a href="#">Discord</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div>© 2024 Planzo Financial Inc. All rights reserved.</div>
+                <div>
+                    <a href="#" style="margin-right: 20px;">Privacy Policy</a>
+                    <a href="#" style="margin-right: 20px;">Terms of Service</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // AppWrite Configuration
+        const APPWRITE_ENDPOINT = 'YOUR_APPWRITE_ENDPOINT'; // Replace with your AppWrite endpoint
+        const APPWRITE_PROJECT_ID = 'YOUR_PROJECT_ID'; // Replace with your project ID
+        const APPWRITE_DATABASE_ID = 'YOUR_DATABASE_ID'; // Replace with your database ID
+        const APPWRITE_COLLECTION_ID = 'YOUR_COLLECTION_ID'; // Replace with your collection ID
+        
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked FAQ if it wasn't active
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+        
+        // Real-time waitlist count from AppWrite
+        async function getWaitlistCount() {
+            try {
+                // This will be implemented once AppWrite is configured
+                // For now, returning static count
+                return 1247;
+                
+                /* Uncomment when AppWrite is configured:
+                const response = await fetch(`${APPWRITE_ENDPOINT}/databases/${APPWRITE_DATABASE_ID}/collections/${APPWRITE_COLLECTION_ID}/documents`, {
+                    method: 'GET',
+                    headers: {
+                        'X-Appwrite-Project': APPWRITE_PROJECT_ID
+                    }
+                });
+                const data = await response.json();
+                return data.total;
+                */
+            } catch (error) {
+                console.error('Error fetching waitlist count:', error);
+                return 1247; // Fallback number
+            }
+        }
+        
+        // Update waitlist count on page load
+        async function updateWaitlistCount() {
+            const count = await getWaitlistCount();
+            document.getElementById('waitlistCount').textContent = count.toLocaleString();
+        }
+        
+        // Handle form submissions
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const email = form.querySelector('input[type="email"]').value;
+            
+            try {
+                // Submit to AppWrite database
+                await submitToAppWrite(email);
+                
+                // Show success message
+                showSuccessMessage();
+                
+                // Clear form
+                form.reset();
+                
+                // Update waitlist count
+                updateWaitlistCount();
+                
+                // Track conversion (Analytics placeholder)
+                if (window.plausible) {
+                    plausible('Waitlist Signup');
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('There was an error joining the waitlist. Please try again.');
+            }
+        }
+        
+        // Submit email to AppWrite
+        async function submitToAppWrite(email) {
+            // This is a placeholder - implement with actual AppWrite SDK
+            console.log('Submitting email to AppWrite:', email);
+            
+            /* Uncomment when AppWrite is configured:
+            const { Databases, ID } = Appwrite;
+            const databases = new Databases(client);
+            
+            await databases.createDocument(
+                APPWRITE_DATABASE_ID,
+                APPWRITE_COLLECTION_ID,
+                ID.unique(),
+                {
+                    email: email,
+                    signupDate: new Date().toISOString(),
+                    source: 'landing_page'
+                }
+            );
+            */
+            
+            // Simulate API delay
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+        
+        // Show success message
+        function showSuccessMessage() {
+            const message = document.getElementById('successMessage');
+            message.classList.add('show');
+            
+            setTimeout(() => {
+                message.classList.remove('show');
+            }, 5000);
+        }
+        
+        // Attach form handlers
+        document.getElementById('heroForm').addEventListener('submit', handleFormSubmit);
+        document.getElementById('finalForm').addEventListener('submit', handleFormSubmit);
+        
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            updateWaitlistCount();
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
