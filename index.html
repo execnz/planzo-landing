@@ -522,6 +522,23 @@
             border: 2px solid rgba(44, 95, 141, 0.1);
         }
         
+        /* Enhanced styling for real mockups */
+        .feature-visual img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-visual img:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+        }
+        
         .mockup-placeholder {
             text-align: center;
             color: var(--text-gray);
@@ -1265,7 +1282,9 @@
                     </p>
                 </div>
                 <div class="feature-visual">
-                    <img src="mockup-partnership-mode.svg" alt="Partnership Mode Interface" style="width: 100%; height: auto;">
+                    <img src="mode_comparison_detail.png" 
+                         alt="Partnership Mode showing Manager Mode with detailed budget ($2,847 with $234 saved) and recent transactions including Whole Foods groceries and Electric Bill, compared to Participant Mode with simplified 'Looking Good!' message showing $234 under budget" 
+                         style="width: 100%; max-width: 400px; height: auto; margin: 0 auto; display: block; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
                 </div>
             </div>
             
@@ -1289,7 +1308,9 @@
                     </p>
                 </div>
                 <div class="feature-visual">
-                    <img src="mockup-one-tap-split.svg" alt="One-Tap Split Interface" style="width: 100%; height: auto;">
+                    <img src="mockup-split-expense.png" 
+                         alt="One-Tap Split screen showing Whole Foods grocery transaction for $84.50 with options to select who paid (Me or Sam), split method including 50/50 Equal Split ($42.25 each), 60/40 Proportional split, or Custom manual entry, with clear indication that you will owe Sam $42.25" 
+                         style="width: 100%; max-width: 400px; height: auto; margin: 0 auto; display: block; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
                 </div>
             </div>
             
@@ -1317,7 +1338,9 @@
                     </p>
                 </div>
                 <div class="feature-visual">
-                    <img src="mockup-weekly-money-date.svg" alt="Weekly Money Date Dashboard" style="width: 100%; height: auto;">
+                    <img src="money_date_progress.png" 
+                         alt="Weekly Money Date progress screen scheduled for Sunday Feb 9 at 10:00 AM, showing 75% complete with 7 minutes estimated time, displaying This Week's Spending at $847 under budget with green checkmark, Pending Settlements marked as all clear, Upcoming Bills showing $341 due this week, and Budget Status to review together with 5 minutes remaining" 
+                         style="width: 100%; max-width: 400px; height: auto; margin: 0 auto; display: block; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
                 </div>
             </div>
             
@@ -1342,7 +1365,9 @@
                     </p>
                 </div>
                 <div class="feature-visual">
-                    <img src="mockup-threshold-agreement.svg" alt="Threshold Agreement Interface" style="width: 100%; height: auto;">
+                    <img src="threshold_warning_view.png" 
+                         alt="Threshold Agreement screen showing Add Purchase interface with $145 purchase amount triggering Above Threshold warning, displaying exclamation icon and message that individual spending limit is $100 with suggestion to consider discussing purchase with partner, includes visual slider showing $0 to $145 range with $100 limit marker, and options to Save Draft or Confirm purchase" 
+                         style="width: 100%; max-width: 400px; height: auto; margin: 0 auto; display: block; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
                 </div>
             </div>
         </div>
